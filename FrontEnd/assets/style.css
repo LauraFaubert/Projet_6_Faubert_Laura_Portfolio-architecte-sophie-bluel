@@ -31,6 +31,10 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
+a{
+	text-decoration: none;
+	color:inherit;
+}
 ol, ul {
 	list-style: none;
 }
@@ -52,6 +56,8 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	color:#3D3D3D ;
+	background-color: #FFFEF8;
 }
 header {
 	display: flex;
@@ -125,6 +131,7 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+/*Mise en forme des filtres*/
 .filters{
 	display: flex;
 	justify-content: center;
@@ -138,7 +145,7 @@ li:hover {
 	color: #1D6154;
 	border-radius: 60px;
 	border: 1px solid #1D6154;
-	background-color: #FFFfff;
+	background-color: #FFFEF8;
 	text-align: center;
 	font-family: Syne;
 	font-size: 16px;
@@ -208,6 +215,91 @@ input[type="submit"]{
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
+	background-color: #FFFFFF;
+	width: 100%;
+	height: 60px;
 }
 
+/* Mise en page de la Page de connexion*/
+.section-login{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap:60px;
+	margin-top: 130px;
+}
+.section-login input{
+	width: 379px;
+	height: 51px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.section-login div{
+	display: flex;
+	flex-direction: column;
+	gap:7px;
+	margin-bottom: 30px;
+	
+}
+button[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 14px;
+	color: white;
+	background-color: #1D6154;
+	margin : auto ;
+	border-radius: 60px;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 179px;
+	height: 36px;
+}
+.section-login a {
+	border-bottom: 1px solid #3D3D3D ;
+}
+/*Mise en page de la bannière noire une fois connecté*/
+.banner_mode_edition{
+	background-color: #000000;
+	color: #FFFFFF;
+	width: 100%;
+	height: 59px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 21px;
+}
+.banner_mode_edition p{
+	font-family: Work sans;
+	font-weight: 400;
+	font-size: 16px;
+}
+.banner_mode_edition .fa-regular {
+	color: #FFFFFF;
+	width: 15px;
+	height: 15px;
+}
+.modify_container{
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	text-align: center;
+	height: 36px;
+	gap:31px;
+	margin-bottom: 3.5em;
+}
+.modify{
+	display: flex;
+	gap: 2px;
+	color:#000000;
+	align-items: flex-end ;
+}
+
+.modify i{
+	height: 16px;
+	width: 16px;
+	font-size: 16px;
+}

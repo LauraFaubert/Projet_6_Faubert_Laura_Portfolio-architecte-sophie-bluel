@@ -1,3 +1,5 @@
+//Constante générales:
+const token = localStorage.getItem("token");
 // Récupération des travaux depuis le back-end avec fetch
 
 async function genererWork (){
@@ -12,7 +14,10 @@ async function genererWork (){
         //console.log(works);
 
         creerGallery(works);
-        creerFiltreBouttons(works);
+        if (!token){
+            creerFiltreBouttons(works); 
+        }
+        
 
         } catch (error){
             console.error ('Une erreur s\'est produite',error);
@@ -76,8 +81,8 @@ async function creerFiltreBouttons(works){
         });
     });
     // Insérez les boutons de filtre après le H2 de la section
-    const h2Element = document.querySelector("#portfolio h2")
-    h2Element.insertAdjacentElement("afterend", divFilters); 
+    const modifyContainer = document.querySelector(".modify_container")
+    modifyContainer.insertAdjacentElement("afterend", divFilters); 
 }
 // Fonction pour filtrer les travaux par catégorie
 function filtreTravauxParCategories (works, categoryId){
@@ -95,3 +100,43 @@ function filtreTravauxParCategories (works, categoryId){
 
 
 genererWork();
+//////////////
+// Modification de la page en fonction de l'état de connexion de l'utilisateur
+// Banner
+
+//Récupération de l'élément .banner 
+const banniere = document.querySelector(".banner_mode_edition");
+const modifier = document.querySelector(".modify");
+if (token){
+  //Créer l'élément pour le texte
+const textBanniere = document.createElement ("p");
+textBanniere.textContent ="Mode édition";
+
+//Créer l'élément pour l'icône Font awesome
+const iconBanniere = document.createElement("i");
+iconBanniere.classList = "fa-regular fa-pen-to-square";
+
+//Créer l'élément pour le lien modifier qui envoi sur la modal
+const textModify = document.createElement ("a");
+textModify.textContent="modifier";
+textModify.href="#modal";
+
+// Créer l'élement pour l'icone font awesome au niveau des projets
+const iconModify = document.createElement("i");
+iconModify.classList = "fa-regular fa-pen-to-square";
+
+// Rattacher les deux enfants au parent Bannière
+banniere.appendChild(iconBanniere);
+banniere.appendChild(textBanniere);
+
+//Rattacher les deux enfants au parent Modifier
+modifier.appendChild(iconModify);
+modifier.appendChild(textModify);
+
+
+} else{
+    banniere.remove();
+    modifier.remove();
+}
+
+//création de la modale
