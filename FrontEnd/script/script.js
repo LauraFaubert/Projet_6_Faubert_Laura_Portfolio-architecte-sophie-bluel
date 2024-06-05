@@ -26,12 +26,17 @@ async function genererWork (){
         }
 }
 
+//Fonction pour vider la galerie
+function viderGallery(){
+    const divGallery = document.querySelector(".gallery");
+    divGallery.innerHTML="";
+}
 
 //fonction pour créer la galerie des travaux
 function creerGallery (works){
+    viderGallery();
     const divGallery = document.querySelector('.gallery');
     
-    supprimerDivGallery(divGallery);
 
     works.forEach(work => {
         const figureElement = document.createElement("figure");
@@ -49,10 +54,6 @@ function creerGallery (works){
         divGallery.appendChild(figureElement);
     });
 }    
-//Fonction pour supprimer la galerie existante
-function supprimerDivGallery (divGallery){
-    divGallery.innerHTML="";
-}
 
 
 //Fonction pour créer les boutons de filtre
@@ -99,7 +100,6 @@ function filtreTravauxParCategories (works, categoryId){
     creerGallery(filtreWorks);
    
 }
-
 
 genererWork();
 
@@ -154,6 +154,8 @@ const arrow = document.getElementById("arrow");
 const buttonFirstModal = document.querySelector(".modal-bouton");
 const imagePreview = document.querySelector('.image-preview-hidden');
 const imagePlaceholder = document.querySelector('.ajout-photo');
+const titreImage = document.getElementById("photo-title");
+const categorieImage = document.getElementById("photo-category");
 
 ouvreModalBtn.addEventListener("click", (e)=>{
     e.preventDefault();
@@ -173,10 +175,8 @@ window.addEventListener("click", (e)=>{
     if(e.target === modal){
         modal.setAttribute("aria-hidden","true");
         modal.classList.remove("is-open");
-        // Réinitialiser le contenu de l'aperçu de l'image
-        imagePreview.innerHTML="";
-        imagePreview.style.display ="none";
-        imagePlaceholder.style.display="flex";
+        // Réinitialiser le contenu et l'aperçu de l'image
+        resetModalContent()
         
     }
 })
@@ -192,19 +192,24 @@ arrow.addEventListener("click", (e)=>{
     e.preventDefault();
     secondModal.style.display = "none";
     firstModal.style.display = "flex";
-   // Réinitialiser le contenu de l'aperçu de l'image
-   imagePreview.innerHTML="";
-   imagePreview.style.display ="none";
-   imagePlaceholder.style.display="flex";
+   // Réinitialiser le contenu et l'aperçu de l'image
+   resetModalContent()
 });
 fermeModalSecondaireBtn.addEventListener("click",() => {
     modal.setAttribute("aria-hidden","true");
     modal.classList.remove("is-open");
-     // Réinitialiser le contenu de l'aperçu de l'image
-     imagePreview.innerHTML="";
-     imagePreview.style.display ="none";
-     imagePlaceholder.style.display="flex";
+     // Réinitialiser le contenu et l'aperçu de l'image
+     resetModalContent()
 });
+
+function resetModalContent(){
+     // Réinitialiser le contenu et l'aperçu de l'image
+     imagePreview.innerHTML = "";
+     imagePreview.style.display = "none";
+     imagePlaceholder.style.display = "flex";
+     titreImage.value = ""; // Réinitialiser le titre
+     categorieImage.value = ""; // Réinitialiser la catégorie
+}
 
 //affichage des works modal
 async function genererWorkModal(){
@@ -280,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const titleInput = document.getElementById('photo-title');
     const categorySelect = document.getElementById('photo-category');
 
-    // Fonction pour vérifier si tous les champs sont remplis
+    // Fonction pour vérifier si tous les champs sont remplis et modifier la couleur
     function checkFormValidity() {
         const title = titleInput.value;
         const category = categorySelect.value;
